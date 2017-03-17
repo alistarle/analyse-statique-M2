@@ -1,13 +1,13 @@
 package intermediate;
 
-import ast.DeclareVar;
+import ast.Declaration;
 import ast.ExpVar;
-import ast.Function;
 import ast.Program;
 import intermediate.instruction.Label;
-import table.Table;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by alistarle on 22/04/2016.
@@ -28,32 +28,30 @@ public class Intermediate {
         ExpVar.FLAG_REG = true; //Flag the ExpVar class to use the regIndex representaiton and no longer name representation in toString
 
         //On ajoute les fonctions du programme
-        for(Function func : program.function)
-        {
-            Label entry_label = new Label(fresh_lbl());
-            return_label = new Label(fresh_lbl());
-            return_reg = fresh_reg();
+        frameList.addAll(program.functions.stream().map(func -> genFrame(func.params, func.ins)).collect(Collectors.toList()));
 
-            Table.getInstance().getFunc(func.id).setIndex(entry_label.getIndex());
+        //On ajoute la fonction principale
+        frameList.add(genFrame(program.params, program.ins));
+    }
 
-            ArrayList<Integer> params = new ArrayList<>();
-            for(DeclareVar param : func.params)
-            {
-                params.add(param.getIndex());
-            }
+    public static Frame genFrame(List<Declaration> paramList, List<ast.Instruction> ins) {
+        Label entry_label = new Label(fresh_lbl());
+        return_label = new Label(fresh_lbl());
+        return_reg = fresh_reg();
 
-            Frame frame = new Frame(entry_label,return_label,params,return_reg);
+        ArrayList<Integer> params = new ArrayList<>();
+        for(Declaration param : paramList)
+            params.add(param.getIndex());
 
-            ArrayList<Instruction> instructions = new ArrayList<>();
-            instructions.add(entry_label);
-            for(ast.Instruction instruction : func.ins)
-            {
-                instructions.addAll(instruction.genIntermediate());
-            }
-            instructions.add(return_label);
-            frame.setInstructions(instructions);
-            frameList.add(frame);
-        }
+        Frame frame = new Frame(entry_label,return_label,params,return_reg);
+
+        ArrayList<Instruction> instructions = new ArrayList<>();
+        instructions.add(entry_label);
+        for(ast.Instruction instruction : ins)
+            instructions.addAll(instruction.genIntermediate());
+        instructions.add(return_label);
+        frame.setInstructions(instructions);
+        return frame;
     }
 
     public static String printIntermediate()

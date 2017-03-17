@@ -1,3 +1,4 @@
+=========== Affichage du pretty printer ===========
 program
     proc fib(int z, int u, res int v)
     begin
@@ -8,3 +9,26 @@ begin
     int x,y;
     call fib(x, 0, y)
 end
+
+=========== Language Intermediaire ===========
+frame(2) : {entry : 2; return : 3; args : [0, 1, 2]; result : reg5; stack : 0}
+2 :
+	jump (reg0<3) 4 5
+4 :
+	reg2 := reg1+1
+7 :
+	goto 6
+5 :
+	call 2 ([reg0-1, reg0, reg0])
+	call 2 ([reg0-2, reg0, reg0])
+8 :
+	goto 6
+6 :
+3 :
+frame(9) : {entry : 9; return : 10; args : [3, 4]; result : reg6; stack : 0}
+9 :
+	call 2 ([reg0, 0, reg0])
+10 :
+
+
+Process finished with exit code 0

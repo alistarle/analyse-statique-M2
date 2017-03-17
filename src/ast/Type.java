@@ -7,13 +7,8 @@ public class Type extends Ast {
 
     public enum EnumType {
         INTVAL("INT", false),
-        INTREF("INT", true),
-        CHARVAL("CHAR", false),
-        CHARREF("CHAR", true),
         BOOLVAL("BOOL", false),
-        BOOLREF("BOOL", true),
-        VOIDVAL("VOID", false),
-        VOIDREF("VOID", true);
+        VOIDVAL("VOID", false);
 
         private final String type;
         private final boolean ref;

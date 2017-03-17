@@ -1,3 +1,4 @@
+=========== Affichage du pretty printer ===========
 program p1
 begin
     int x;
@@ -6,3 +7,17 @@ begin
         x := x -1
     )
 end
+
+=========== Language Intermediaire ===========
+frame(2) : {entry : 2; return : 3; args : [0]; result : reg1; stack : 0}
+2 :
+	reg0 := 100
+4 :
+	jump (0<reg0) 5 6
+5 :
+	reg0 := reg0-1
+	goto 4
+6 :
+3 :
+
+Process finished with exit code 0

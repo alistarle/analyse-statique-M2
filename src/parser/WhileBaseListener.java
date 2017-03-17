@@ -1,4 +1,4 @@
-// Generated from /Users/alistarle/Documents/Master/AS/src/While.g4 by ANTLR 4.5.1
+// Generated from /Users/alistarle/Documents/Master/AS/src/While.g4 by ANTLR 4.6
 package parser;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -28,13 +28,13 @@ public class WhileBaseListener implements WhileListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDeclaration(WhileParser.DeclarationContext ctx) { }
+	@Override public void enterFunction(WhileParser.FunctionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDeclaration(WhileParser.DeclarationContext ctx) { }
+	@Override public void exitFunction(WhileParser.FunctionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -52,25 +52,13 @@ public class WhileBaseListener implements WhileListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLdeclVariables(WhileParser.LdeclVariablesContext ctx) { }
+	@Override public void enterDeclare(WhileParser.DeclareContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLdeclVariables(WhileParser.LdeclVariablesContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterDeclVariables(WhileParser.DeclVariablesContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitDeclVariables(WhileParser.DeclVariablesContext ctx) { }
+	@Override public void exitDeclare(WhileParser.DeclareContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -124,61 +112,169 @@ public class WhileBaseListener implements WhileListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIdent(WhileParser.IdentContext ctx) { }
+	@Override public void enterAssignVar(WhileParser.AssignVarContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitIdent(WhileParser.IdentContext ctx) { }
+	@Override public void exitAssignVar(WhileParser.AssignVarContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAexpr(WhileParser.AexprContext ctx) { }
+	@Override public void enterAssignTabExp(WhileParser.AssignTabExpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAexpr(WhileParser.AexprContext ctx) { }
+	@Override public void exitAssignTabExp(WhileParser.AssignTabExpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLaexpression(WhileParser.LaexpressionContext ctx) { }
+	@Override public void enterPar(WhileParser.ParContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLaexpression(WhileParser.LaexpressionContext ctx) { }
+	@Override public void exitPar(WhileParser.ParContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAexpression(WhileParser.AexpressionContext ctx) { }
+	@Override public void enterLogicNot(WhileParser.LogicNotContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAexpression(WhileParser.AexpressionContext ctx) { }
+	@Override public void exitLogicNot(WhileParser.LogicNotContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBexpression(WhileParser.BexpressionContext ctx) { }
+	@Override public void enterMulDiv(WhileParser.MulDivContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBexpression(WhileParser.BexpressionContext ctx) { }
+	@Override public void exitMulDiv(WhileParser.MulDivContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAddSub(WhileParser.AddSubContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAddSub(WhileParser.AddSubContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterEqual(WhileParser.EqualContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitEqual(WhileParser.EqualContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterId(WhileParser.IdContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitId(WhileParser.IdContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterIdArray(WhileParser.IdArrayContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIdArray(WhileParser.IdArrayContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBoolean(WhileParser.BooleanContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBoolean(WhileParser.BooleanContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterLogic(WhileParser.LogicContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLogic(WhileParser.LogicContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpSub(WhileParser.ExpSubContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpSub(WhileParser.ExpSubContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInt(WhileParser.IntContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInt(WhileParser.IntContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterComp(WhileParser.CompContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitComp(WhileParser.CompContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

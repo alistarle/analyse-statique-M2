@@ -1,4 +1,4 @@
-// Generated from /Users/alistarle/Documents/Master/AS/src/While.g4 by ANTLR 4.5.1
+// Generated from /Users/alistarle/Documents/Master/AS/src/While.g4 by ANTLR 4.6
 package parser;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -20,15 +20,15 @@ public interface WhileListener extends ParseTreeListener {
 	 */
 	void exitProgram(WhileParser.ProgramContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link WhileParser#declaration}.
+	 * Enter a parse tree produced by {@link WhileParser#function}.
 	 * @param ctx the parse tree
 	 */
-	void enterDeclaration(WhileParser.DeclarationContext ctx);
+	void enterFunction(WhileParser.FunctionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link WhileParser#declaration}.
+	 * Exit a parse tree produced by {@link WhileParser#function}.
 	 * @param ctx the parse tree
 	 */
-	void exitDeclaration(WhileParser.DeclarationContext ctx);
+	void exitFunction(WhileParser.FunctionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link WhileParser#ldeclIdentifier}.
 	 * @param ctx the parse tree
@@ -40,25 +40,17 @@ public interface WhileListener extends ParseTreeListener {
 	 */
 	void exitLdeclIdentifier(WhileParser.LdeclIdentifierContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link WhileParser#ldeclVariables}.
+	 * Enter a parse tree produced by the {@code Declare}
+	 * labeled alternative in {@link WhileParser#declVariables}.
 	 * @param ctx the parse tree
 	 */
-	void enterLdeclVariables(WhileParser.LdeclVariablesContext ctx);
+	void enterDeclare(WhileParser.DeclareContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link WhileParser#ldeclVariables}.
+	 * Exit a parse tree produced by the {@code Declare}
+	 * labeled alternative in {@link WhileParser#declVariables}.
 	 * @param ctx the parse tree
 	 */
-	void exitLdeclVariables(WhileParser.LdeclVariablesContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link WhileParser#declVariables}.
-	 * @param ctx the parse tree
-	 */
-	void enterDeclVariables(WhileParser.DeclVariablesContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link WhileParser#declVariables}.
-	 * @param ctx the parse tree
-	 */
-	void exitDeclVariables(WhileParser.DeclVariablesContext ctx);
+	void exitDeclare(WhileParser.DeclareContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link WhileParser#lidentifier}.
 	 * @param ctx the parse tree
@@ -104,55 +96,173 @@ public interface WhileListener extends ParseTreeListener {
 	 */
 	void exitFunctionCall(WhileParser.FunctionCallContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link WhileParser#ident}.
+	 * Enter a parse tree produced by the {@code AssignVar}
+	 * labeled alternative in {@link WhileParser#assign}.
 	 * @param ctx the parse tree
 	 */
-	void enterIdent(WhileParser.IdentContext ctx);
+	void enterAssignVar(WhileParser.AssignVarContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link WhileParser#ident}.
+	 * Exit a parse tree produced by the {@code AssignVar}
+	 * labeled alternative in {@link WhileParser#assign}.
 	 * @param ctx the parse tree
 	 */
-	void exitIdent(WhileParser.IdentContext ctx);
+	void exitAssignVar(WhileParser.AssignVarContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link WhileParser#aexpr}.
+	 * Enter a parse tree produced by the {@code AssignTabExp}
+	 * labeled alternative in {@link WhileParser#assign}.
 	 * @param ctx the parse tree
 	 */
-	void enterAexpr(WhileParser.AexprContext ctx);
+	void enterAssignTabExp(WhileParser.AssignTabExpContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link WhileParser#aexpr}.
+	 * Exit a parse tree produced by the {@code AssignTabExp}
+	 * labeled alternative in {@link WhileParser#assign}.
 	 * @param ctx the parse tree
 	 */
-	void exitAexpr(WhileParser.AexprContext ctx);
+	void exitAssignTabExp(WhileParser.AssignTabExpContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link WhileParser#laexpression}.
+	 * Enter a parse tree produced by the {@code Par}
+	 * labeled alternative in {@link WhileParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterLaexpression(WhileParser.LaexpressionContext ctx);
+	void enterPar(WhileParser.ParContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link WhileParser#laexpression}.
+	 * Exit a parse tree produced by the {@code Par}
+	 * labeled alternative in {@link WhileParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitLaexpression(WhileParser.LaexpressionContext ctx);
+	void exitPar(WhileParser.ParContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link WhileParser#aexpression}.
+	 * Enter a parse tree produced by the {@code LogicNot}
+	 * labeled alternative in {@link WhileParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterAexpression(WhileParser.AexpressionContext ctx);
+	void enterLogicNot(WhileParser.LogicNotContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link WhileParser#aexpression}.
+	 * Exit a parse tree produced by the {@code LogicNot}
+	 * labeled alternative in {@link WhileParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitAexpression(WhileParser.AexpressionContext ctx);
+	void exitLogicNot(WhileParser.LogicNotContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link WhileParser#bexpression}.
+	 * Enter a parse tree produced by the {@code MulDiv}
+	 * labeled alternative in {@link WhileParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterBexpression(WhileParser.BexpressionContext ctx);
+	void enterMulDiv(WhileParser.MulDivContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link WhileParser#bexpression}.
+	 * Exit a parse tree produced by the {@code MulDiv}
+	 * labeled alternative in {@link WhileParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitBexpression(WhileParser.BexpressionContext ctx);
+	void exitMulDiv(WhileParser.MulDivContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code AddSub}
+	 * labeled alternative in {@link WhileParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterAddSub(WhileParser.AddSubContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code AddSub}
+	 * labeled alternative in {@link WhileParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitAddSub(WhileParser.AddSubContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Equal}
+	 * labeled alternative in {@link WhileParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterEqual(WhileParser.EqualContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Equal}
+	 * labeled alternative in {@link WhileParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitEqual(WhileParser.EqualContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Id}
+	 * labeled alternative in {@link WhileParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterId(WhileParser.IdContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Id}
+	 * labeled alternative in {@link WhileParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitId(WhileParser.IdContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code IdArray}
+	 * labeled alternative in {@link WhileParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterIdArray(WhileParser.IdArrayContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code IdArray}
+	 * labeled alternative in {@link WhileParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitIdArray(WhileParser.IdArrayContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Boolean}
+	 * labeled alternative in {@link WhileParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterBoolean(WhileParser.BooleanContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Boolean}
+	 * labeled alternative in {@link WhileParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitBoolean(WhileParser.BooleanContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Logic}
+	 * labeled alternative in {@link WhileParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterLogic(WhileParser.LogicContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Logic}
+	 * labeled alternative in {@link WhileParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitLogic(WhileParser.LogicContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ExpSub}
+	 * labeled alternative in {@link WhileParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpSub(WhileParser.ExpSubContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ExpSub}
+	 * labeled alternative in {@link WhileParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpSub(WhileParser.ExpSubContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Int}
+	 * labeled alternative in {@link WhileParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterInt(WhileParser.IntContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Int}
+	 * labeled alternative in {@link WhileParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitInt(WhileParser.IntContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Comp}
+	 * labeled alternative in {@link WhileParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterComp(WhileParser.CompContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Comp}
+	 * labeled alternative in {@link WhileParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitComp(WhileParser.CompContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link WhileParser#block}.
 	 * @param ctx the parse tree

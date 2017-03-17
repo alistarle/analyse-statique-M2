@@ -1,46 +1,37 @@
 grammar While;
 
-main: 'program' Identifier? (declaration*)? 'begin' ldeclVariables statements 'end' EOF #Program;
+main: 'program' Identifier? (function*)? 'begin' declVariables* statements 'end' EOF #Program;
 
-declaration : 'proc' Identifier'(' ldeclIdentifier? (','? RETURN type Identifier)? ')' 'begin' statements 'end';
+function : 'proc' Identifier'(' ldeclIdentifier? RETURN type Identifier ')' 'begin' statements 'end';
 
-ldeclIdentifier : type Identifier (',' type Identifier)*;
+ldeclIdentifier : (type Identifier ',')*;
 
-ldeclVariables : declVariables ldeclVariables*;
-
-declVariables : type lidentifier ';';
+declVariables : type lidentifier ';' #Declare;
 
 lidentifier : Identifier (',' Identifier)*;
 
-controle: IF bexpression THEN block (ELSE block)? #ControleIf
-    | WHILE bexpression DO block #ControleWhile
+controle: IF expression THEN block (ELSE block)? #ControleIf
+    | WHILE expression DO block #ControleWhile
     ;
 
-functionCall: 'call' Identifier'(' laexpression ')';
+functionCall: 'call' Identifier'(' expression (',' expression)* ')';
 
-ident : Identifier|Identifier'['aexpr']';
-
-aexpr : ident|Constante
-    | aexpr op=(MUL|DIV) aexpr
-    | aexpr op=(ADD|SUB) aexpr
-    | '('aexpr')'
+assign : Identifier ':=' expression #AssignVar
+    |Identifier'['expression']' ':=' expression #AssignTabExp
     ;
 
-laexpression : aexpression (',' aexpression)*;
-
-aexpression : ident | Constante
-    | aexpression op=(MUL|DIV) aexpression
-    | aexpression op=(ADD|SUB) aexpression
-    | SUB aexpression
-    | '('aexpression')'
-    ;
-
-bexpression : BOOLEAN
-	| aexpression op=(GT|GTE|LT|LTE) aexpression
-	| aexpression op=(EQ|NEQ) aexpression
-	| bexpression op=(AND|OR) bexpression
-    | op=NOT bexpression
-    | '('bexpression')'
+expression : expression op=(MUL|DIV) expression #MulDiv
+    | expression op=(ADD|SUB) expression #AddSub
+	| expression op=(GT|GTE|LT|LTE) expression #Comp
+	| expression op=(EQ|NEQ) expression #Equal
+	| expression op=(AND|OR) expression #Logic
+    | op=NOT expression #LogicNot
+    | SUB expression #ExpSub
+    | Identifier #Id
+    | Identifier'['expression']' #IdArray
+    | BOOLEAN #Boolean
+    | SUB?Constante #Int
+    | '('expression')' #Par
     ;
 
 
@@ -48,9 +39,9 @@ block: statement
     | '('statements')'
     ;
 
-statements : statement(';'statements)* ;
+statements : statement(';'statement)* ;
 
-statement : ident ':=' aexpr
+statement : assign
     | functionCall
     | controle
     | 'skip'
@@ -98,4 +89,4 @@ BOOLEAN : 'true'|'false';
 Constante : [0-9]+;
 Identifier : [a-zA-Z][a-zA-Z0-9]*;
 
-WS : [ \t\r\n\l]+ -> skip;
+WS : [ \t\r\n]+ -> skip;
