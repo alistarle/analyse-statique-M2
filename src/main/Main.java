@@ -4,7 +4,6 @@ import analysis.Analyzer;
 import analysis.utils.Info;
 import ast.Ast;
 import ast.Program;
-import intermediate.Intermediate;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -58,8 +57,8 @@ public class Main {
         ArrayList<Info> list = a.analyse();
         System.out.println(list);
 
-        System.out.println("=========== Language Intermediaire ===========");
+        /*System.out.println("=========== Language Intermediaire ===========");
         Intermediate.genIntermediate(program);
-        System.out.println(Intermediate.printIntermediate());
+        System.out.println(Intermediate.printIntermediate());*/
     }
 }

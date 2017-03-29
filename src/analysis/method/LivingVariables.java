@@ -9,6 +9,7 @@ import ast.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 
 /**
  * Created by alistarle on 28/03/2017.
@@ -24,6 +25,8 @@ public class LivingVariables extends Method<Declaration> {
         } else if (ins instanceof AssignVar) {
             list.add(new DeclareVar(ins.pos, Type.EnumType.INTVAL, ((AssignVar) ins).var));
         }
+
+        System.out.println("Kill("+l+"):"+list);
         return list;
     }
 
@@ -38,20 +41,26 @@ public class LivingVariables extends Method<Declaration> {
         } else if(ins instanceof Control) {
             list.addAll(((Control) ins).exp.getVar());
         }
+        System.out.println("Gen("+l+"):"+list);
+
         return list;
     }
 
     @Override
     public HashSet<Declaration> U(HashSet<HashSet<Declaration>> entries) {
-        HashSet<Declaration> exits = entries.iterator().next();
-        while(entries.iterator().hasNext())
-            exits.addAll(entries.iterator().next());
+        Iterator<HashSet<Declaration>> i = entries.iterator();
+        HashSet<Declaration> exits = i.next();
+        while(i.hasNext())
+            exits.addAll(i.next());
         return exits;
     }
 
     @Override
     public boolean C(HashSet<Declaration> left, HashSet<Declaration> right) {
-        return left.containsAll(right);
+        for(Declaration d : right)
+            if(!left.contains(d))
+                return true;
+        return false;
     }
 
     @Override
@@ -77,6 +86,14 @@ public class LivingVariables extends Method<Declaration> {
     @Override
     public HashSet<Info> interpret(HashMap<Integer, HashSet<Declaration>> analysis) {
         System.out.println(analysis);
-        return null;
+
+        HashMap<Integer, HashSet<Declaration>> exit = new HashMap<>();
+        for(Integer i : analysis.keySet())
+        {
+            exit.put(i, this.f(analysis.get(i), i));
+        }
+
+        System.out.println(exit);
+        return new HashSet<>();
     }
 }

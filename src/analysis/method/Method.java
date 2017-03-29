@@ -5,6 +5,7 @@ import analysis.utils.Info;
 import analysis.utils.Pair;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -15,9 +16,10 @@ public abstract class Method<T> {
 
     public HashSet<T> f(HashSet<T> labelAnalysis, int label)
     {
-        HashSet<T> result = new HashSet<>(labelAnalysis);
+        HashSet<T> result = new HashSet<>();
+        result.addAll((Collection<T>) labelAnalysis.clone());
         result.removeAll(kill(label));
-        result.addAll(gen(label));
+        result.addAll((Collection<T>) gen(label).clone());
         return result;
     }
 

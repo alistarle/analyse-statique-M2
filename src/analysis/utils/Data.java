@@ -2,7 +2,7 @@ package analysis.utils;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
+import java.util.stream.Collectors;
 
 /**
  * Created by alistarle on 28/03/2017.
@@ -22,12 +22,8 @@ public class Data {
         this.flow = flow;
         this.labels = labels;
 
-        this.flowR = new HashSet<>(flow);
-        Iterator<Pair> i = flowR.iterator();
-        while(i.hasNext())
-        {
-            i.next().reverse();
-        }
+        this.flowR = new HashSet<>();
+        flowR.addAll(flow.stream().map(p -> new Pair(p.to, p.from)).collect(Collectors.toList()));
     }
 
     @Override

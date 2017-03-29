@@ -44,4 +44,30 @@ public class AssignVar extends Instruction{
         }
         this.reg_index = Table.getInstance().lookUpIndex(var);
     }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return new AssignVar(pos, var, exp);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AssignVar)) return false;
+
+        AssignVar assignVar = (AssignVar) o;
+
+        if (reg_index != assignVar.reg_index) return false;
+        if (var != null ? !var.equals(assignVar.var) : assignVar.var != null) return false;
+        return exp != null ? exp.equals(assignVar.exp) : assignVar.exp == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = var != null ? var.hashCode() : 0;
+        result = 31 * result + reg_index;
+        result = 31 * result + (exp != null ? exp.hashCode() : 0);
+        return result;
+    }
 }

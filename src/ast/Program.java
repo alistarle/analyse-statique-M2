@@ -65,10 +65,12 @@ public class Program extends Ast{
             if(ins.get(i) instanceof ControlWhile)
             {
                 flow.addAll(((ControlWhile) ins.get(i)).getFlow());
+                flow.add(new Pair(ins.get(i).label, ins.get(i + 1).label));
             } else if(ins.get(i) instanceof ControlIf) {
                 flow.addAll(((ControlIf) ins.get(i)).getFlow(ins.get(i+1)));
+            } else {
+                flow.add(new Pair(ins.get(i).label, ins.get(i + 1).label));
             }
-            flow.add(new Pair(ins.get(i).label, ins.get(i+1).label));
         }
 
         return flow;

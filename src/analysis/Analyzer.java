@@ -48,8 +48,8 @@ public class Analyzer{
         for(Instruction ins : program.ins)
         {
             controlFlowGraph.putAll(ins.getLabels());
-            labels.addAll(controlFlowGraph.keySet());
         }
+        labels.addAll(controlFlowGraph.keySet());
 
         return new Data(inits, finals, flow, labels);
     }
@@ -90,15 +90,18 @@ public class Analyzer{
         /**
          * Iteration
          */
-        while (w.iterator().hasNext()){
-            Pair p = w.iterator().next();
-            if(!m.C(m.f(analysis.get(p.from), p.from),analysis.get(p.to)))
+        while (w.size() > 0){
+            Pair p = w.pop();
+            System.out.println("Process "+p+"\n");
+            if(!m.C(  m.f(analysis.get(p.from), p.from)  ,   analysis.get(p.to)  ))
             {
                 analysis.get(p.to).addAll(m.f(analysis.get(p.from), p.from));
                 for(Pair p2 : flow)
                     if(p.to == p2.from)
                         w.push(p2);
             }
+            System.out.println(analysis);
+            System.out.println();
         }
 
         /**

@@ -62,6 +62,7 @@ public class ControlIf extends Control {
             list.putAll(ins.getLabels());
         for(Instruction ins : this.lelse)
             list.putAll(ins.getLabels());
+        list.put(this.label, this);
         return list;
     }
 
