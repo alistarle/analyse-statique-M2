@@ -19,6 +19,7 @@ public class DeclareTab extends Declaration {
     public Expression size;
 
     public DeclareTab(Position pos, Type.EnumType t, Expression size, String id) {
+        super();
         this.pos = pos;
         this.t = t;
         this.size = size;

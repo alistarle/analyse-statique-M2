@@ -1,5 +1,7 @@
 package main;
 
+import analysis.Analyzer;
+import analysis.utils.Info;
 import ast.Ast;
 import ast.Program;
 import intermediate.Intermediate;
@@ -12,6 +14,7 @@ import parser.WhileVisitor;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 
 /**
  * Created by thomas on 29/02/16.
@@ -47,10 +50,13 @@ public class Main {
         Program program = (Program) buildAST.visit(tree);
         program.verifSemantique();
 
-        //TODO Analyse statique
-
         System.out.println("=========== Affichage du pretty printer ===========");
         System.out.println(program.toString());
+
+        //TODO Analyse statique
+        Analyzer a = new Analyzer(program);
+        ArrayList<Info> list = a.analyse();
+        System.out.println(list);
 
         System.out.println("=========== Language Intermediaire ===========");
         Intermediate.genIntermediate(program);

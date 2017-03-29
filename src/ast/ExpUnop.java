@@ -2,6 +2,8 @@ package ast;
 
 import exceptions.TypeIncoherent;
 
+import java.util.HashSet;
+
 /**
  * Created by alistarle on 07/03/2017.
  */
@@ -24,6 +26,11 @@ public class ExpUnop extends Expression{
         }else {
             return right.getType();
         }
+    }
+
+    @Override
+    public HashSet<Declaration> getVar() {
+        return right.getVar();
     }
 
     @Override

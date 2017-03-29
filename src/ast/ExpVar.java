@@ -3,6 +3,8 @@ package ast;
 import exceptions.ReferenceIndefinie;
 import table.Table;
 
+import java.util.HashSet;
+
 /**
  * Created by alistarle on 07/03/2017.
  */
@@ -35,6 +37,13 @@ public class ExpVar extends Expression {
         }else{
             throw new ReferenceIndefinie(name,pos);
         }
+    }
+
+    @Override
+    public HashSet<Declaration> getVar() {
+        HashSet<Declaration> list = new HashSet<>();
+        list.add(new DeclareVar(this.pos, Type.EnumType.INTVAL, this.name));
+        return list;
     }
 
     public int getIndex() {

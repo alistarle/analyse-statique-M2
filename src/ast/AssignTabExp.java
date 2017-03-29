@@ -17,6 +17,7 @@ public class AssignTabExp extends Instruction{
     public Expression exp;
 
     public AssignTabExp(Position pos, String nameTab, Expression expParam, Expression exp) {
+        super();
         this.pos = pos;
         this.nameTab = nameTab;
         this.expParam = expParam;

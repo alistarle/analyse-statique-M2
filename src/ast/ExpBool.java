@@ -1,5 +1,7 @@
 package ast;
 
+import java.util.HashSet;
+
 /**
  * Created by alistarle on 07/03/2017.
  */
@@ -16,6 +18,11 @@ public class ExpBool extends Expression {
     @Override
     public Type.EnumType getType() {
         return Type.EnumType.BOOLVAL;
+    }
+
+    @Override
+    public HashSet<Declaration> getVar() {
+        return new HashSet<>();
     }
 
     @Override

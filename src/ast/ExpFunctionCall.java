@@ -3,6 +3,8 @@ package ast;
 import exceptions.ReferenceIndefinie;
 import table.Table;
 
+import java.util.HashSet;
+
 /**
  * Created by alistarle on 07/03/2017.
  */
@@ -23,6 +25,11 @@ public class ExpFunctionCall extends Expression{
         }else{
             throw new ReferenceIndefinie(fc.id,pos);
         }
+    }
+
+    @Override
+    public HashSet<Declaration> getVar() {
+        return new HashSet<>();
     }
 
     @Override

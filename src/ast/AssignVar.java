@@ -17,6 +17,7 @@ public class AssignVar extends Instruction{
     public Expression exp;
 
     public AssignVar(Position pos, String var, Expression exp) {
+        super();
         this.pos = pos;
         this.var = var;
         this.exp = exp;

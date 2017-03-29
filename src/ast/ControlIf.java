@@ -1,5 +1,6 @@
 package ast;
 
+import analysis.utils.Pair;
 import exceptions.TypeIncoherent;
 import intermediate.Intermediate;
 import intermediate.instruction.Goto;
@@ -9,6 +10,8 @@ import main.StringOffseter;
 import table.Table;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -16,15 +19,17 @@ import java.util.List;
  */
 public class ControlIf extends Control {
 
-    public Expression exp;
     public List<Instruction> lif;
     public List<Instruction> lelse;
 
-    public ControlIf(Position pos,Expression exp, List<Instruction> lif, List<Instruction> lesle) {
+    public ControlIf(Position pos,Expression exp, List<Instruction> lif, List<Instruction> lelse) {
+        super();
         this.pos = pos;
         this.exp = exp;
         this.lif = lif;
-        this.lelse = lesle;
+        this.lif.add(new Skip());
+        this.lelse = lelse;
+        this.lelse.add(new Skip());
     }
 
     public String toString() {
@@ -47,6 +52,17 @@ public class ControlIf extends Control {
             s.append("}");
         }
         return s.toString();
+    }
+
+    @Override
+    public HashMap<Integer, Instruction> getLabels()
+    {
+        HashMap<Integer, Instruction> list = new HashMap<>();
+        for(Instruction ins : this.lif)
+            list.putAll(ins.getLabels());
+        for(Instruction ins : this.lelse)
+            list.putAll(ins.getLabels());
+        return list;
     }
 
     @Override
@@ -78,6 +94,38 @@ public class ControlIf extends Control {
 
         iList.add(join);
         return iList;
+    }
+
+    public HashSet<Pair> getFlow(Instruction next) {
+        HashSet<Pair> flow = new HashSet<>();
+
+        for(int i = 0; i < lif.size()-1; i++)
+        {
+            if(lif.get(i) instanceof ControlWhile)
+            {
+                flow.addAll(((ControlWhile) lif.get(i)).getFlow());
+            } else if(lif.get(i) instanceof ControlIf) {
+                flow.addAll(((ControlIf) lif.get(i)).getFlow(lif.get(i+1)));
+            }
+            flow.add(new Pair(lif.get(i).label, lif.get(i+1).label));
+        }
+
+        for(int i = 0; i < lelse.size()-1; i++)
+        {
+            if(lelse.get(i) instanceof ControlWhile)
+            {
+                flow.addAll(((ControlWhile) lelse.get(i)).getFlow());
+            } else if(lelse.get(i) instanceof ControlIf) {
+                flow.addAll(((ControlIf) lelse.get(i)).getFlow(lelse.get(i+1)));
+            }
+            flow.add(new Pair(lelse.get(i).label, lelse.get(i+1).label));
+        }
+        flow.add(new Pair(this.label, lif.get(0).label));
+        flow.add(new Pair(this.label, lelse.get(0).label));
+        flow.add(new Pair(lif.get(lif.size()-1).label, next.label));
+        flow.add(new Pair(lelse.get(lif.size()-1).label, next.label));
+
+        return flow;
     }
 
     @Override

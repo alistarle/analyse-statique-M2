@@ -4,6 +4,8 @@ import exceptions.ReferenceIndefinie;
 import exceptions.TypeIncoherent;
 import table.Table;
 
+import java.util.HashSet;
+
 /**
  * Created by alistarle on 07/03/2017.
  */
@@ -35,6 +37,11 @@ public class ExpIdArray extends Expression {
                 throw new ReferenceIndefinie(id,pos);
             }
         }
+    }
+
+    @Override
+    public HashSet<Declaration> getVar() {
+        return new HashSet<>();
     }
 
     @Override

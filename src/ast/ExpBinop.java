@@ -2,6 +2,8 @@ package ast;
 
 import exceptions.TypeIncoherent;
 
+import java.util.HashSet;
+
 /**
  * Created by alistarle on 07/03/2017.
  */
@@ -32,6 +34,13 @@ public class ExpBinop extends Expression{
         }else{
             throw new TypeIncoherent(left.getType().toString(),right.getType().toString(),pos);
         }
+    }
+
+    @Override
+    public HashSet<Declaration> getVar() {
+        HashSet<Declaration> list = left.getVar();
+        list.addAll(right.getVar());
+        return list;
     }
 
     @Override

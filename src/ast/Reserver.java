@@ -33,6 +33,7 @@ public class Reserver extends ast.Instruction {
     public Function var;
 
     public Reserver(Position pos, String var) {
+        super();
         this.pos = pos;
         this.var = Function.valueOf(var);
     }

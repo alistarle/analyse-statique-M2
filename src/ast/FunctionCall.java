@@ -16,6 +16,7 @@ public class FunctionCall extends Instruction {
     public ArrayList<Expression> params;
 
     public FunctionCall(Position pos,String id, ArrayList<Expression> params) {
+        super();
         this.pos = pos;
         this.id = id;
         this.params = params;

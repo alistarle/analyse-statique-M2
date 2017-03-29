@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class DeclareVar extends Declaration {
 
     public DeclareVar(Position pos, Type.EnumType t, String id) {
+        super();
         this.pos = pos;
         this.t = t;
         this.id = id;

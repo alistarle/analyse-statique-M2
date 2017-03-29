@@ -1,7 +1,9 @@
 package ast;
 
+import analysis.utils.Pair;
 import main.StringOffseter;
 
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -19,6 +21,7 @@ public class Program extends Ast{
         this.params = params;
         this.functions = functions;
         this.ins = ins;
+        this.ins.add(new Skip());
     }
 
     public String toString() {
@@ -52,5 +55,22 @@ public class Program extends Ast{
         for(Instruction i: ins) {
             i.verifSemantique();
         }
+    }
+
+    public HashSet<Pair> getFlow() {
+        HashSet<Pair> flow = new HashSet<>();
+
+        for(int i = 0; i < ins.size()-1; i++)
+        {
+            if(ins.get(i) instanceof ControlWhile)
+            {
+                flow.addAll(((ControlWhile) ins.get(i)).getFlow());
+            } else if(ins.get(i) instanceof ControlIf) {
+                flow.addAll(((ControlIf) ins.get(i)).getFlow(ins.get(i+1)));
+            }
+            flow.add(new Pair(ins.get(i).label, ins.get(i+1).label));
+        }
+
+        return flow;
     }
 }
